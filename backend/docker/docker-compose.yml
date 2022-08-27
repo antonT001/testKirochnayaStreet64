@@ -1,0 +1,40 @@
+version: "3.3"
+services:
+  service:
+    env_file:
+      - service.env
+    build: 
+      context: ../
+      dockerfile: ./docker/service/Dockerfile
+    container_name: service.gettingLogs
+    depends_on:
+      - mysql
+    networks:
+      gocart:
+        ipv4_address: 10.53.0.4
+    restart: always
+    ports:
+      - "8000:8000"
+
+  mysql:
+    env_file:
+      - mysql.env
+    build: ./mysql
+    container_name: mysql.gettingLogs
+    volumes:
+      - ${MYSQL_DATA_PATH}:/var/lib/mysql/
+    networks:
+      gocart:
+        ipv4_address: 10.53.0.3
+    restart: always
+    ports:
+      - "3306:3306"
+
+networks:
+  gocart:
+    name: gettingLogs
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.53.0.0/16
+         gateway: 10.53.0.1

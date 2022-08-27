@@ -1,0 +1,4 @@
+backend/docker/.env
+backend/docker/mysql.env
+backend/docker/service.env
+.vscode
