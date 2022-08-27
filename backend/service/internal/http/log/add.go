@@ -45,15 +45,8 @@ func (h *log) Add(w http.ResponseWriter, r *http.Request) {
 		}, http.StatusInternalServerError)
 		return
 	}
-
-	err = h.logService.Add(logAddIn)
-	if err != nil {
-		responseAdd(w, logService.LogAddOut{
-			Success: false,
-			Error:   helpers.StringPointer(SERVICE_ERROR + ": " + err.Error()),
-		}, http.StatusInternalServerError)
-		return
-	}
+	
+	h.queue.AddToQueue(logAddIn)
 
 	responseAdd(w, logService.LogAddOut{
 		Success: true,

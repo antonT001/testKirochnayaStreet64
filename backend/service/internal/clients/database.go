@@ -32,12 +32,12 @@ func New(logger logger.Logger) DataBase {
 		user, pass, host, port, dbname,
 	)
 
-	fmt.Println(source)
-
 	conn, err := sqlx.Connect("mysql", source)
 	if err != nil {
 		logger.Panic(err)
 	}
+
+	logger.Log("db connected")
 
 	conn.SetConnMaxIdleTime(5 * time.Second)
 	conn.SetConnMaxLifetime(60 * time.Second)
