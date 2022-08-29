@@ -6,7 +6,7 @@ import (
 )
 
 type Log interface {
-	Add(valueStrings string, valueArgs []interface{}) error
+	Add(logAdd *LogAdd) error
 }
 
 type log struct {

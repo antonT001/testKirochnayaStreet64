@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/jmoiron/sqlx"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 )
 
 type DataBase interface {
@@ -21,6 +21,7 @@ type dataBase struct {
 }
 
 func New(logger logger.Logger) DataBase {
+
 	host := os.Getenv("MYSQL_HOST")
 	port := os.Getenv("MYSQL_PORT")
 	user := os.Getenv("MYSQL_USER")

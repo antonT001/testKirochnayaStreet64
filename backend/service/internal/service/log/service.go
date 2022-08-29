@@ -2,18 +2,18 @@ package log
 
 import (
 	"gettingLogs/internal/logger"
-	logRepository "gettingLogs/internal/repository/log"
+	s "gettingLogs/internal/repository/log"
 )
 
 type Log interface {
-	Add(logAddIn *LogAddIn) error
+	Add(logAdd *s.LogAdd) error
 }
 
 type log struct {
-	logRepository logRepository.Log
+	logRepository s.Log
 	logger        logger.Logger
 }
 
-func New(logRepository logRepository.Log, logger logger.Logger) Log {
+func New(logRepository s.Log, logger logger.Logger) Log {
 	return &log{logRepository: logRepository, logger: logger}
 }

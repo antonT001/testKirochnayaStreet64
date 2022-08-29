@@ -1,5 +1,5 @@
 #!/bin/bash
-sleep 15
+sleep 25
 
 cd /var/www/service/
 go run cmd/service/main.go &
